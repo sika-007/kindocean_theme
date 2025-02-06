@@ -1,0 +1,55 @@
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [],
+  "presets": [{
+    "name": "FAQ Section",
+    "category": "Custom"
+  }],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Type your question here",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Type your answer here",
+          "default": "<p>You can return any item within 30 days for a full refund.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10
+}
+{% endschema %}
+
+<div class="faq-section">
+  {% for block in section.blocks %}
+    <div class="faq-item">
+      <h3>{{ block.settings.question }}</h3>
+      <div class="faq-answer">{{ block.settings.answer }}</div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .faq-section {
+    margin: 20px 0;
+  }
+  .faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .faq-answer {
+    margin-top: 10px;
+  }
+</style>

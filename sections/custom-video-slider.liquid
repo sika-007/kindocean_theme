@@ -1,0 +1,315 @@
+{{ 'glider.min.css' | asset_url | stylesheet_tag }}
+{{ 'glider.min.js' | asset_url | script_tag }}
+
+<section class="testimonial_section page-width">
+  <div class="glider-contain multiple">
+    <h1 class="testimonial_section-header">{{ section.settings.title }}</h1>
+
+    <div class="testimonial_glider">
+      {%- for block in section.blocks -%}
+        <div class="testimonial_video-container">
+          {%- if block.settings.video != blank -%}
+            {{
+              block.settings.video
+              | video_tag:
+                autoplay: false,
+                loop: false,
+                controls: false,
+                muted: false,
+                playsinline: true,
+                poster: block.settings.thumbnail,
+                class: 'testimonial_video',
+                width: 289,
+                height: 400
+            }}
+            <!-- Custom Play Button Overlay -->
+            <div class="custom-play-button">
+            
+            </div>
+
+          {%- else -%}
+            <div class="media media--square">
+              {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div id="testimonial_dots" class="testimonial_glider-hyphen-dots"></div>
+  </div>
+</section>
+
+
+<style>
+  .testimonial_section {
+    margin-top: 24px;
+    margin-bottom: 0px;
+  } 
+
+  .glider-contain .multiple {
+    width: 100%;
+  }
+
+  .testimonial_section-header {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 52px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #1F212A;
+  }
+
+  .testimonial_glider-hyphen-dots {
+    margin-top: 20px;
+    margin-bottom: 60px;
+  }
+
+  .testimonial_glider {
+    scrollbar-width: none;
+  }
+
+  .testimonial_glider::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+  }
+
+  .glider-dot {
+    background: #E2E3E4;
+    width: 26px;
+  }
+
+  .glider-dot.active {
+    background: #00A7E1;
+    width: 38px;
+    transition: all 0.25s ease-in;
+  }
+
+  .testimonial_video-container {
+    height: 100%;
+    margin: 8px;
+    position: relative;
+  }
+
+  .testimonial_video {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Custom Play Button Styling */
+  .custom-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-image: url({{"VideoPlayIcon.png" | asset_url}});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .custom-play-button.playing {
+    background-image: url({{ 'VideoPauseIcon.png' | asset_url }}); /* Optional pause icon */
+  }
+
+  @media (max-width: 768px) {
+    .testimonial_section {
+      padding: 20px 0;
+    }
+
+    .testimonial_section-header {
+      margin: 30px 15px;
+      font-size: 31px;
+      font-weight: 600;
+      line-height: 40.3px;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 989px) {
+    .testimonial_section {
+      margin-top: 100px;
+      margin-bottom: 40px;
+    } 
+    
+    #testimonial_dots {
+      visibility: hidden
+    }
+  }
+</style>
+
+<script>
+   new Glider(document.querySelector(".testimonial_glider"), {
+     slidesToScroll: 1,
+     slidesToShow: 1.5,
+     draggable: true,
+     scrollLock: false,
+     dots: "#testimonial_dots",
+     arrows: {
+       prev: ".glider-prev",
+       next: ".glider-next",
+     },
+     responsive: [
+       {
+         // screens greater than >= 576px
+         breakpoint: 480,
+         settings: {
+           slidesToShow: 2.5,
+           slidesToScroll: 1,
+           scrollLock: false, 
+         },
+       },
+       {
+         // screens greater than >= 576px
+         breakpoint: 576,
+         settings: {
+           slidesToShow: 3.5,
+           slidesToScroll: 1,
+           scrollLock: false, 
+         },
+       },
+       {
+         // screens greater than >= 768px
+         breakpoint: 768,
+         settings: {
+           slidesToShow: 4.5,
+           slidesToScroll: 1,
+           scrollLock: false, 
+         },
+       },
+       // {
+       //   // screens greater than >= 1024px
+       //   breakpoint: 1024,
+       //   settings: {
+       //     slidesToShow: 4.5,
+       //     slidesToScroll: 1,
+       //   },
+       // },
+       // {
+       //    // Large Laptop - screens >= 1280px
+       //    breakpoint: 1280,
+       //    settings: {
+       //      slidesToShow: 4.5,
+       //      slidesToScroll: 1,
+       //    },
+       //  },
+       //  {
+       //    // Desktop - screens >= 1440px
+       //    breakpoint: 1440,
+       //    settings: {
+       //      slidesToShow: 4.5,
+       //      slidesToScroll: 1,
+       //    },
+       //  },
+       //  {
+       //    // Large Desktop - screens >= 1600px
+       //    breakpoint: 1600,
+       //    settings: {
+       //      slidesToShow: 4.5,
+       //      slidesToScroll: 1,
+       //    },
+       //  },
+       //  {
+       //    // Extra Large Desktop - screens >= 1920px
+       //    breakpoint: 1920,
+       //    settings: {
+       //      slidesToShow: 4.5,
+       //      slidesToScroll: 1,
+       //    },
+       //  },
+     ],
+   });
+
+  document.querySelectorAll('.testimonial_video-container').forEach(container => {
+     const video = container.querySelector('.testimonial_video');
+     const playButton = container.querySelector('.custom-play-button');
+
+     playButton.addEventListener('click', () => {
+       // Pause all other videos
+       document.querySelectorAll('.testimonial_video').forEach(otherVideo => {
+         if (otherVideo !== video) {
+           otherVideo.pause();
+           otherVideo.closest('.testimonial_video-container')
+             .querySelector('.custom-play-button')
+             .classList.remove('playing');
+         }
+       });
+
+       if (video.paused) {
+         video.play();
+         playButton.classList.add('playing');
+       } else {
+         video.pause();
+         playButton.classList.remove('playing');
+       }
+     });
+
+     // Optional: Hide play button when video ends
+     video.addEventListener('ended', () => {
+       playButton.classList.remove('playing');
+     });
+   });
+</script>
+
+{% schema %}
+{
+  "name": "Videos slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Video slider",
+      "label": "Videos title"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video link",
+          "info": "(289x400)px recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail",
+          "label": "thumbnail"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Videos slider",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

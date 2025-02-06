@@ -1,0 +1,514 @@
+/* Group 2085663136 */
+
+position: absolute;
+width: 1440px;
+height: 70px;
+left: 0px;
+top: 780px;
+
+
+
+/* Rectangle 662 */
+
+position: absolute;
+width: 1440px;
+height: 70px;
+left: 0px;
+top: 780px;
+
+/* Dark */
+background: #1F212A;
+
+
+/* Frame 2085663177 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 143px;
+
+position: absolute;
+width: 1216px;
+height: 25px;
+left: 112px;
+top: calc(50% - 25px/2 - 2421px);
+
+
+
+/* Frame 2085663188 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+margin: 0 auto;
+width: 148px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Component 3 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 50%;
+right: 6%;
+top: 18%;
+bottom: 38%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 6%;
+right: 62%;
+top: 34%;
+bottom: 34%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 22%;
+right: 54%;
+top: 50%;
+bottom: 26%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 46%;
+right: 22%;
+top: 34%;
+bottom: 12%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Eco-Friendly */
+
+width: 114px;
+height: 25px;
+
+/* S/S2 Medium */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* White */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ellipse 6 */
+
+margin: 0 auto;
+width: 8px;
+height: 8px;
+
+background: #00A7E1;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 2085663189 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+margin: 0 auto;
+width: 111px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Component 3 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Effective */
+
+width: 77px;
+height: 25px;
+
+/* S/S2 Medium */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* White */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ellipse 6 */
+
+margin: 0 auto;
+width: 8px;
+height: 8px;
+
+background: #00A7E1;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Frame 2085663190 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+margin: 0 auto;
+width: 139px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Component 3 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Convenient */
+
+width: 105px;
+height: 25px;
+
+/* S/S2 Medium */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* White */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ellipse 6 */
+
+margin: 0 auto;
+width: 8px;
+height: 8px;
+
+background: #00A7E1;
+
+/* Inside auto layout */
+flex: none;
+order: 5;
+flex-grow: 0;
+
+
+/* Frame 2085663191 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+margin: 0 auto;
+width: 75px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 6;
+flex-grow: 0;
+
+
+/* Component 3 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 9.38%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 28.45%;
+right: 34.7%;
+top: 50%;
+bottom: 43.75%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Safe */
+
+width: 41px;
+height: 25px;
+
+/* S/S2 Medium */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* White */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ellipse 7 */
+
+margin: 0 auto;
+width: 8px;
+height: 8px;
+
+background: #00A7E1;
+
+/* Inside auto layout */
+flex: none;
+order: 7;
+flex-grow: 0;
+
+
+/* Frame 2085663192 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+margin: 0 auto;
+width: 94px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 8;
+flex-grow: 0;
+
+
+/* Component 3 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 18.75%;
+top: 6.25%;
+bottom: 12.5%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.12%;
+right: 31.25%;
+top: 59.38%;
+bottom: 25%;
+
+border: 1.5px solid #00A7E1;
+
+
+/* Gentle */
+
+width: 60px;
+height: 25px;
+
+/* S/S2 Medium */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* White */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;

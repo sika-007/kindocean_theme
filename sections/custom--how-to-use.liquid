@@ -1,0 +1,259 @@
+{{ 'splide.min.css' | asset_url | stylesheet_tag }}
+{{ 'splide.min.js' | asset_url | script_tag }}
+
+{% schema %}
+  {
+     "name": "How to use them",
+     "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Header",
+          "default": "How to use them?"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheader",
+          "default": "3 easy steps"
+        }
+     ],
+     "blocks": [
+        {
+          "name": "How To",
+          "type": "how_to_steps",
+          "limit": 3,
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "image_step",
+              "label": "Image Step"
+            },
+            {
+              "type": "richtext",
+              "label": "Steps",
+              "id": "step_label",
+              "default": "<p>Type the steps</p>"
+            },
+            {
+              "type": "text",
+              "label": "Step No",
+              "id": "step_number"
+            }
+          ]
+        }
+     ],
+     "presets": [
+        {
+          "name": "How to use them",
+          "category": "Custom",
+          "blocks": [
+            {
+              "type": "how_to_steps"
+            },
+            {
+              "type": "how_to_steps"
+            },
+            {
+              "type": "how_to_steps"
+            }
+          ]
+        }
+     ]
+  }
+{% endschema %}
+
+<div class="how-to-use">
+  <div class="how-to_header">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+  </div>
+  <div id="splide" class="splide">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% for block in section.blocks %} 
+          <li class="splide__slide">
+            <div class="image">
+              <img src="{{ block.settings.image_step | img_url: '480x480' }}" alt="{{ block.settings.step_label }}">
+            </div>
+            <div class="image-description">
+              <div class="step-count">{{ block.settings.step_number }}</div>
+              <p>{{ block.settings.step_label }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  .how-to-use {
+    background: #F2FBFD;
+    padding: 30px 0 79px;
+  }
+
+  .splide {
+    /* height: 60vh; */
+    /* padding: 2rem 0; */
+    border-radius: 10px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    /* background: #f2fbfd; */
+  }
+
+  .how-to_header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .how-to_header h1 {
+    font-weight: 600;
+    color: #1F212A;
+  }
+
+  .how-to_header p {
+    margin: unset;
+    color: #626369;
+  }
+
+  @media screen and (min-width: 767px) {
+    .how-to_header p {
+      color: #68778F;
+    }
+  } 
+
+
+  .splide__track {
+    height: 100%
+  }
+
+  .splide__list .splide__slide:nth-child(-n+2) {
+    margin-right: 20px;
+  }
+
+  /* .splide__list {
+    overflow: scroll; 
+    scrollbar-width: none;
+  } */
+
+  .splide__slide {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+  
+    padding: 12px;
+    width: 392px !important;
+    height: fit-content !important;
+    background: white;
+  }
+  
+  
+  .splide__slide .image {
+    display: block !important;
+    height: 310px;
+    width: 368px;
+      overflow: hidden;
+    
+  }
+  
+  .splide__slide .image-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    height: 88px;
+  }
+  
+  .image-description .step-count {
+    background: #00A7E1;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    color: white;
+  }
+
+  .image-description p {
+    color: #1F212A;
+  }
+  
+  .splide__arrow {
+    display: none !important;
+  }
+  
+
+  @media screen and (max-width: 767px) {
+    .splide__list .splide__slide:nth-child(3) .image-description p {
+      width: 150px;
+    }
+    
+    .splide__slide {
+      height: 253px;
+      width: fit-content !important;
+    }
+
+    .splide__slide .image {
+      height: 180px;
+      width: 212px;
+      overflow: hidden;
+    }
+
+    .splide__slide .image-description {
+      font-size: 14px;
+      height: unset;
+    }
+
+    .image-description .step-count {
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+
+  @media screen and (min-width: 768px) {
+    .how-to-use {
+      padding: 60px 0 30px;
+    }
+
+    .splide__pagination {
+      display: none !important;
+    }
+
+  }
+  
+  .splide__pagination {
+    bottom: -35px !important;
+    left: 0;
+    padding: 0 1em;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+
+  /* Overriding default splide css rules */
+  .splide__pagination__page.is-active {
+    background: #00A7E1 !important;
+    margin: 10px !important;
+  }
+
+  .splide__pagination__page {
+    width: 40px !important;
+    height: 9px !important;
+    border-radius: 4.5px !important;
+    margin: 6px !important;
+  }
+  
+</style>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script> -->
+
+

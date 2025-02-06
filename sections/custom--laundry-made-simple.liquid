@@ -1,0 +1,329 @@
+{% schema %}
+{
+  "name": "Comparison Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_header",
+      "label": "Section Header",
+      "default": "Laundry Made Simple, Sustainable, and Effective"
+    },
+    {
+      "type": "text",
+      "id": "column_header-1",
+      "label": "1st Column Header",
+      "default": "Kind Earthly"
+    },
+    {
+      "type": "text",
+      "id": "column_header-2",
+      "label": "2nd Column Header",
+      "default": "Regular Laundry Detergent"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_one_text",
+          "label": "Column One Text",
+          "default": "Ease of use"
+        },
+        {
+          "type": "text",
+          "id": "column_two_text",
+          "label": "Column Two Text (Kind Earthly)",
+          "default": "Pre-measured"
+        },
+        {
+          "type": "text",
+          "id": "column_three_text",
+          "label": "Column Three Text (Regular Detergent)",
+          "default": "Difficult to measure"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Custom"
+    }
+  ],
+  "max_blocks": 5
+}
+{% endschema %}
+
+<section
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+    background-image: url({{ 'laundry_made_simple_bg.png' | asset_url }});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 10rem 3rem;
+    width: 100%;
+  "
+>
+  <h2 class="section-header">
+    {{ section.settings.section_header }}
+  </h2>
+
+  <div
+    style="
+      display: flex;
+      background-color: transparent;
+      align-items: end;
+      justify-content: center;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #333;
+    "
+  >
+    <div
+      class="column_container"
+      style="
+        display: flex;
+        width: 100%;
+        align-items: end;
+        justify-content: center;
+      "
+    >
+      <div class="columns" style="display: flex; flex-wrap: wrap; flex: 2; align-items: end">
+        
+        <!-- Column one static titles -->
+        <ul class="column_1 list-container_1">
+          {% for block in section.blocks %}
+            <li class="list-item_1">{{ block.settings.column_one_text }}</li>
+          {% endfor %}
+        </ul>
+
+        <!-- Column two (Kind Earthly) -->
+        <div class="column_2">
+          <div class="header-container" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <img class="column_image" src="{{ 'logo.png' | asset_img_url }}" alt="logo" />
+            <h3 class="column-header">{{ section.settings.column_header-1 }}</h3>
+          </div>
+          <ul class="list-container_2">
+            {% for block in section.blocks %}
+              <li class="list-item_2">
+                <div style="display: flex; align-items: center;">
+                  <img class="column_item-icon" src="{{ 'CheckCircle.png' | asset_img_url }}" alt="CheckCircle" />
+                  <span>{{ block.settings.column_two_text }}</span>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+        
+
+        <!-- Column three (Regular Detergent) -->
+        <div class="column_3">
+          <div class="header-container" style="display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: #14aee3;">
+            <img class="column_image" src="{{ 'laundry-detergent.png' | asset_img_url }}" alt="detergent" />
+            <h3 style="color: white;" class="column-header">{{ section.settings.column_header-2 }}</h3>
+          </div>
+          <ul class="list-container_3">
+            {% for block in section.blocks %}
+              <li class="list-item_3">
+                <div style="display: flex; align-items: center;">
+                  <img class="column_item-icon" src="{{ 'XCircle.png' | asset_img_url }}" alt="x-mark" />
+                  <span>{{ block.settings.column_three_text }}</span>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+  </div>
+</section>
+
+    <style>
+      ul {
+        padding-inline-start: 0;
+        margin-block-end: 0;
+        margin-block-start: 0;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      .list-item_1,
+      .list-item_2,
+      .list-item_3 {
+        height: 70px;
+        display: flex;
+        text-align: start;
+        align-items: center;
+        width: 100%;
+        padding: 0 3rem;
+      }
+
+      .list-item_1 p {
+        width: 80%;
+      }
+
+      .header-container {
+        height: 140px;
+        padding: 30px 0;
+      }
+
+      .column-header {
+        width: 100%;
+        text-align: center;
+        max-width: 187px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+        text-align: center;
+      }
+
+      .column_image {
+        height: 52px;
+      }
+
+      .column_item-icon {
+        height: 32px;
+        width: 32px;
+      }
+
+      .column_1 {
+        flex: 1;
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
+        color: white;
+        overflow: hidden;
+        flex-shrink: 1;
+      }
+
+      .column_2 {
+        flex: 1;
+        background-color: white;
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .column_3 {
+        flex: 1;
+        border-radius: 14px;
+        overflow: hidden;
+        color: white;
+      }
+
+      .column_3,
+      .column_2,
+      .column_1 {
+        max-width: 392px;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .column_container {
+        max-width: 1200px;
+        gap: 20px;
+      }
+
+      .list-item_2 > div,
+      .list-item_3 > div {
+        flex-direction: row;
+      }
+
+      .list-item_1:nth-child(2n + 1),
+      .list-item_3:nth-child(2n + 1) {
+        background: #20b2e4;
+      }
+
+      .list-item_1:nth-child(2n),
+      .list-item_3:nth-child(2n) {
+        background: #14aee3;
+      }
+
+      .list-item_2:nth-child(2n + 1) {
+        background-color: #fcfcfc;
+      }
+
+      .list-item_2:nth-child(2n) {
+        background-color: #f6f6f6;
+      }
+
+      .list-item_2 span,
+      .list-item_3 span {
+        margin-left: 15px;
+      }
+
+      .section-header {
+        max-width: 578px;
+        align-self: center;
+        text-wrap: wrap;
+        color: white;
+        justify-self: center;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 39px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .list-item_1,
+        .list-item_2,
+        .list-item_3 {
+          font-size: 10px;
+          padding: 0 0.5rem;
+        }
+
+        .list-item_2 span,
+        .list-item_3 span {
+          margin-left: 5px;
+          text-align: center;
+        }
+
+        .header-container {
+          height: 100px;
+          padding: 30px 10px;
+        }
+
+        .column_container {
+          gap: 5px;
+        }
+
+        .list-item_2 > div,
+        .list-item_3 > div {
+          flex-direction: column;
+        }
+
+        .list-item_1 {
+          padding-left: 20px
+        }
+
+        .list-item_2,
+        .list-item_3 {
+          justify-content: center;
+        }
+
+        .column-header {
+          font-size: 11px;
+          line-height: 15.4px;
+          text-align: center;
+        }
+
+        .column_image {
+          height: 35px;
+        }
+
+        .column_item-icon {
+          height: 20px;
+          width: 20px;
+        }
+      }
+    </style>

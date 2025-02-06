@@ -1,0 +1,287 @@
+{%- style -%}
+  .section-{{ section.id }} .newsletter__form {
+    width: var(--form-width);
+    max-width: 100%;
+    display: inline-block;
+  }
+{%- endstyle -%}
+
+{% liquid
+  assign has_richtext = false
+  if section.settings.heading != blank or section.settings.description != blank or section.settings.subheading != blank
+    assign has_richtext = true
+  endif
+
+  assign motion_delay = 50
+
+  assign header_alignment = settings.section_header_alignment
+  assign header_alignment_mobile = settings.section_header_alignment_mobile
+  if header_alignment_mobile == 'inherit'
+    assign header_alignment_mobile = header_alignment
+  endif
+%}
+
+{% render 'divider',
+  show_divider: section.settings.show_section_divider,
+  divider_width: section.settings.divider_width
+%}
+
+<div
+  class="section section-{{ section.id }} section--padding newsletter color-{{ section.settings.color_scheme }} md:text-{{ header_alignment }} text-{{ header_alignment_mobile }}"
+  style="--section-padding-top: {{ section.settings.padding_top }}px;--section-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="page-width">
+    {% if has_richtext %}
+      <div class="section__header rich-text">
+        {% if section.settings.subheading != blank %}
+          <motion-element
+            data-motion="fade-up"
+            data-motion-delay="{{ motion_delay }}"
+            class="block rich-text__subheading text-subheading"
+          >
+            {{- section.settings.subheading -}}
+          </motion-element>
+          {%- assign motion_delay = motion_delay | plus: 50 -%}
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="rich-text__heading {{ section.settings.heading_size }}">
+            <motion-element
+              data-motion="fade-up"
+              data-motion-delay="{{ motion_delay }}"
+              class="block"
+            >
+              {{ section.settings.heading }}
+            </motion-element>
+          </h2>
+          {%- assign motion_delay = motion_delay | plus: 50 -%}
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <motion-element
+            data-motion="fade-up"
+            data-motion-delay="{{ motion_delay }}"
+            class="block rich-text__text rte {{ section.settings.text_size }}"
+          >
+            {{- section.settings.description -}}
+          </motion-element>
+          {%- assign motion_delay = motion_delay | plus: 50 -%}
+        {% endif %}
+      </div>
+    {% endif %}
+    <motion-element
+      data-motion="fade-up"
+      data-motion-delay="{{ motion_delay }}"
+      class="newsletter__form"
+      style="--form-width: {{ section.settings.form_width }}px;"
+    >
+      {% render 'newsletter-form', custom_id: section.id, design: section.settings.design %}
+    </motion-element>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.general.name"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_header.content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.all.subheading.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Signup form",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:sections.all.text_size.heading.label",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h6",
+          "label": "t:sections.all.text_size.options__h6.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.text_size.options__h5.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.text_size.options__h4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.text_size.options__h3.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.text_size.options__h2.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.text_size.options__h1.label"
+        },
+        {
+          "value": "hd3",
+          "label": "t:sections.all.text_size.options__hd3.label"
+        },
+        {
+          "value": "hd2",
+          "label": "t:sections.all.text_size.options__hd2.label"
+        },
+        {
+          "value": "hd1",
+          "label": "t:sections.all.text_size.options__hd1.label"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.all.text.label",
+      "default": "<p>Be the first to know about new collections and exclusive offers.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "t:sections.all.text_size.description.label",
+      "default": "text-base",
+      "options": [
+        {
+          "value": "text-sm",
+          "label": "t:sections.all.text_size.options__small.label"
+        },
+        {
+          "value": "text-base",
+          "label": "t:sections.all.text_size.options__base.label"
+        },
+        {
+          "value": "text-lg",
+          "label": "t:sections.all.text_size.options__large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.all.text_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.all.text_alignment.options__2.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.all.text_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.newsletter.form_settings_header"
+    },
+    {
+      "type": "select",
+      "id": "design",
+      "options": [
+        {
+          "value": "design-1",
+          "label": "t:sections.all.design.options__1.label"
+        },
+        {
+          "value": "design-2",
+          "label": "t:sections.all.design.options__2.label"
+        }
+      ],
+      "default": "design-1",
+      "label": "t:sections.all.design.label"
+    },
+    {
+      "type": "range",
+      "id": "form_width",
+      "label": "t:sections.footer.blocks.newsletter.settings.form_width.label",
+      "min": 450,
+      "max": 800,
+      "step": 5,
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.divider.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_divider",
+      "default": false,
+      "label": "t:sections.all.divider.settings.show_divider.label"
+    },
+    {
+      "type": "select",
+      "id": "divider_width",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "t:sections.all.container.options__fixed.label"
+        },
+        {
+          "value": "full",
+          "label": "t:sections.all.container.options__full.label"
+        }
+      ],
+      "default": "fixed",
+      "label": "t:sections.all.divider.settings.divider_width.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.newsletter.presets.name"
+    }
+  ]
+}
+{% endschema %}

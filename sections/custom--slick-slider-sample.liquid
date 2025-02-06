@@ -1,0 +1,117 @@
+{% schema %}
+  {
+    "name": "Slick Slider",
+    "settings": [],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Slick Slider",
+        "category": "custom"
+      }
+    ]
+  }
+{% endschema %}
+
+
+<div class="slider">
+  <div class="slide-item">
+    <h1>TEST ONLY (1)</h1>
+  </div>
+  <div class="slide-item">
+    <h1>TEST ONLY (2)</h1>
+  </div>
+  <div class="slide-item">
+    <h1>TEST ONLY (3)</h1>
+  </div>
+  <div class="slide-item">
+    <h1>TEST ONLY (4)</h1>
+  </div>
+  <div class="slide-item">
+    <h1>TEST ONLY (5)</h1>
+  </div>
+  <div class="slide-item">
+    <h1>TEST ONLY (6)</h1>
+  </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+<script>
+  $(document).ready(function () {
+    $('.slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 2,
+      autoplay: false,
+      autoplaySpeed: 2000,
+      arrows: false,
+      customPaging: function(slider, i) {
+        return '<button type="button" class="slick-dot"></button>';
+      },
+      responsive: [
+        {
+          breakpoint: 480, // For even smaller screens
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
+
+
+
+<style>
+
+  .slider .slide-item {
+    margin: 0 8px;
+  }
+  
+  .slick-track {
+    display: flex;
+  }
+  
+  .slide-item {
+    border: 2px solid black;
+    height: 400px !important;
+    width: 290px !important;
+  }
+
+  @media screen and (max-width: 767px) {
+    .slide-item {
+      height: 325px !important;
+      width: 236px !important;
+    }
+  }
+
+  .slick-dots {
+    display: flex;
+  }
+
+  .slick-dots li:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  .slick-dot {
+    background: #E2E3E4;
+    height: 9px;
+    width: 26px;
+    border-radius: 40px;
+    padding: unset;
+  }
+
+  .slick-active button {
+    background: #00A7E1;
+    height: 9px;
+    width: 38px;
+    padding: unset;
+  }
+</style>

@@ -1,0 +1,179 @@
+{% schema %}
+  {
+    "name": "Features",
+    "settings": [],
+    "blocks": [
+      {
+        "name": "Feature Item",
+        "type": "feature_item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "feature_icon",
+            "label": "Feature Icon"
+          },
+          {
+            "type": "text",
+            "label": "Feature Label",
+            "id": "feature_label",
+            "default": "Feature"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Feature List",
+        "category": "Custom",
+        "blocks": [
+          {
+            "type": "feature_item"
+          },
+          {
+            "type": "feature_item"
+          },
+          {
+            "type": "feature_item"
+          },
+          {
+            "type": "feature_item"
+          },
+          {
+            "type": "feature_item"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+<div class="features-list">
+  <div class="features-list__container">
+    {% for block in section.blocks %} 
+      <div class="features-list__item">
+        <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="">
+        <p>{{ block.settings.feature_label }}</p>
+      </div>
+
+      {% unless forloop.last %}
+        <!-- Insert bullet between items except the last one -->
+        <div class="bullet">•</div>
+      {% endunless %}
+      
+    {% endfor %}
+  </div>
+</div>
+
+
+<style>
+  .features-list {
+    background: #1F212A;
+    color: white;
+    display: flex;
+    overflow: hidden;
+    height: 70px;
+  }
+  
+  .features-list__container {
+    display: flex;
+    align-items: center;
+    /* for desktop */
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .features-list__container .bullet {
+    height: 8px;
+    width: 8px;
+    color: #00A7E1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 50%; */
+  }
+  
+  .features-list__item {
+    /* width: 150px; */
+    text-align: center;
+    margin: 0 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .features-list__item img {
+    height: 24px;
+    width: 24px;
+    margin-right: 11px;
+  }
+
+  .features-list__item p {
+    white-space: nowrap;
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .features-list {
+      justify-content: unset;
+    }
+    
+    .features-list__container {
+      animation: slide 15s infinite linear;
+      width: unset;
+      justify-content: unset;
+      padding: unset;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .features-list {
+      justify-content: center;
+    }
+    
+    .features-list__container {
+      width: 85%;
+    }
+  }
+</style>
+
+<script>
+  function handleBrandsContainer() {
+    const container = document.querySelector('.features-list');
+    const brandsContainers = document.querySelectorAll(
+      '.features-list__container'
+    );
+
+    if (window.innerWidth < 768) {
+      // If only one .brands-container exists, clone it
+      if (brandsContainers.length === 1) {
+        const clone = brandsContainers[0].cloneNode(true); // Clone the brands-container
+        container.appendChild(clone); // Append the clone to the container
+      }
+    } else {
+      // Remove duplicates if the screen width is greater than 768px
+      brandsContainers.forEach((element, index) => {
+        if (index > 0) {
+          // Only remove additional (duplicate) elements
+          container.removeChild(element);
+        }
+      });
+    }
+  }
+
+  // Run the function on initial load
+  handleBrandsContainer();
+
+  // Run the function when resizing the window
+  window.addEventListener('resize', handleBrandsContainer);
+</script>
